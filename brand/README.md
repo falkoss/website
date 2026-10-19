@@ -35,6 +35,19 @@ monospace type. No gradients, no soft curves, no stock-photo nature.
 | App-like icon | `png/icon/` (rounded), `png/icon-square/` (edge to edge), `png/icon-small/` (16–48 px) |
 | Print, stickers | the SVGs (vector); one-colour marks for single-colour print |
 
+## falkOSS labs
+
+**falkoss-labs** is the GitHub organisation for small projects – plugins, forks, tools, experiments – that don't need
+an organisation of their own. It is not a separate brand: same falcon, same colours, plus the word **labs** in steel.
+
+| Use | File |
+|---|---|
+| GitHub org avatar | `png/social/github-avatar-labs-500.png` |
+| Headers on dark / light | `svg/falkoss-labs-lockup-on-dark.svg`, `-on-light.svg` (PNG: `png/labs/`) |
+| Icon | `svg/falkoss-labs-icon.svg` (rounded), `-icon-square.svg` (PNG: `png/labs/`) |
+
+In text: **falkOSS labs** (lowercase `labs`); in handles `falkoss-labs`.
+
 ## Colours
 
 | Name | Hex | Use |

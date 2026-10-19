@@ -76,16 +76,21 @@ GLYPHS = {
     # (advance width, path) – angular, chamfered terminal letters; x-height 40..100, ascender 8, caps 12..100
     "f": (40, "M14,100 V24 L28,10 H38 M2,44 H32"),
     "a": (56, "M48,44 V100 M48,58 L36,44 H16 L6,54 V90 L16,100 H36 L48,88"),
+    "b": (56, "M8,8 V100 M8,58 L20,44 H40 L50,54 V90 L40,100 H20 L8,88"),
     "l": (22, "M10,8 V100"),
     "k": (52, "M10,8 V100 M46,44 L10,78 M26,64 L48,100"),
     "O": (80, "M20,12 H60 L74,26 V86 L60,100 H20 L6,86 V26 Z"),
     "S": (64, "M58,12 H18 L6,24 V44 L18,56 H46 L58,68 V88 L46,100 H4"),
+    "s": (52, "M48,44 H14 L4,54 V64 L14,72 H38 L48,80 V90 L38,100 H2"),
 }
 
 
-def wordmark_body(light=MIST, accent=FALCON, stroke=13):
+def wordmark_body(light=MIST, accent=FALCON, stroke=13, text="falkOSS"):
     x, parts = 0, []
-    for ch in "falkOSS":
+    for ch in text:
+        if ch == " ":
+            x += 30
+            continue
         adv, d = GLYPHS[ch]
         color = accent if ch.isupper() else light
         parts.append(f'<path d="{d}" transform="translate({x} 0)" stroke="{color}"/>')
@@ -109,6 +114,29 @@ def lockup(light=MIST, accent=FALCON, bg=None, bird=FALCON, water=LAKE):
     return svg(f"-24 -24 {w + 48} 208", back
                + f'<g transform="translate(-30 -40) scale(0.2)">{mark(bird, water)}</g>'
                + f'<g transform="translate(184 26) scale(1.0)">{body}</g>')
+
+
+# --- labs: falkoss-labs, the home for small projects – same falcon, "labs" in steel where the lake was --------------
+
+def labs_icon(bg=NIGHT, rounded=False):
+    """Avatar for the falkoss-labs organisation: the falcon, and "labs" drawn in steel in place of the lake."""
+    r = 160 if rounded else 0
+    body, width = wordmark_body(LAKE, LAKE, text="labs")
+    k = 2.0
+    return svg("0 0 1024 1024", f'<rect width="1024" height="1024" rx="{r}" fill="{bg}"/>'
+               f'<g transform="translate(512 430) scale(0.78) translate(-512 -500)">{falcon(FALCON)}</g>'
+               f'<g transform="translate({512 - width * k / 2} 632) scale({k})">{body}</g>')
+
+
+def labs_lockup(light=MIST, accent=FALCON, labs=LAKE, bird=FALCON, water=LAKE):
+    """falkOSS lockup with "labs" after the wordmark, in steel."""
+    body, width = wordmark_body(light, accent)
+    tag, tag_w = wordmark_body(labs, labs, text="labs")
+    w = 150 + width + 36 + tag_w + 24
+    return svg(f"-24 -24 {w + 48} 208",
+               f'<g transform="translate(-30 -40) scale(0.2)">{mark(bird, water)}</g>'
+               f'<g transform="translate(184 26)">{body}</g>'
+               f'<g transform="translate({184 + width + 36} 26)">{tag}</g>')
 
 
 def social():
@@ -180,6 +208,10 @@ def main():
         "falkoss-lockup-on-light.svg": lockup(INK, FALCON_DARK, bird=FALCON_DARK, water=LAKE_DARK),
         "falkoss-social-1280x640.svg": social(),
         "favicon.svg": favicon_svg(),
+        "falkoss-labs-icon.svg": labs_icon(rounded=True),
+        "falkoss-labs-icon-square.svg": labs_icon(),
+        "falkoss-labs-lockup-on-dark.svg": labs_lockup(),
+        "falkoss-labs-lockup-on-light.svg": labs_lockup(INK, FALCON_DARK, LAKE_DARK, FALCON_DARK, LAKE_DARK),
     }
     for name, content in files.items():
         write(os.path.join(SVG, name), content)
@@ -197,6 +229,11 @@ def main():
         render(s(f"falkoss-lockup-{v}.svg"), os.path.join(PNG, "lockup", f"falkoss-lockup-{v}-1200.png"), 1200)
     render(s("falkoss-icon-square.svg"), os.path.join(PNG, "social", "github-avatar-500.png"), 500)
     render(s("falkoss-social-1280x640.svg"), os.path.join(PNG, "social", "falkoss-social-1280x640.png"), 1280, 640)
+    render(s("falkoss-labs-icon-square.svg"), os.path.join(PNG, "social", "github-avatar-labs-500.png"), 500)
+    for size in (256, 512, 1024):
+        render(s("falkoss-labs-icon.svg"), os.path.join(PNG, "labs", f"falkoss-labs-icon-{size}.png"), size)
+    for v in ("on-dark", "on-light"):
+        render(s(f"falkoss-labs-lockup-{v}.svg"), os.path.join(PNG, "labs", f"falkoss-labs-lockup-{v}-1200.png"), 1200)
 
     # Website head assets
     os.makedirs(SITE, exist_ok=True)
@@ -207,6 +244,8 @@ def main():
     render(s("falkoss-icon.svg"), os.path.join(SITE, "icon-192.png"), 192)
     render(s("falkoss-icon.svg"), os.path.join(SITE, "icon-512.png"), 512)
     shutil.copy(os.path.join(PNG, "social", "falkoss-social-1280x640.png"), os.path.join(SITE, "social.png"))
+    os.makedirs(os.path.join(SITE, "projects"), exist_ok=True)
+    shutil.copy(os.path.join(PNG, "labs", "falkoss-labs-icon-256.png"), os.path.join(SITE, "projects", "falkoss-labs.png"))
     ico(os.path.join(SITE, "favicon.ico"),
         [os.path.join(PNG, "icon-small", f"falkoss-icon-small-{n}.png") for n in (16, 32, 48)])
     write(os.path.join(SITE, "site.webmanifest"),

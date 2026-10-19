@@ -83,6 +83,7 @@ section h2::before { content: "// "; color: var(--steel); }
 .project { display: grid; grid-template-columns: 88px 1fr; gap: 22px; align-items: start; background: var(--panel); border: 1px solid var(--line); padding: 24px; }
 .project img { width: 88px; height: 88px; display: block; }
 .project h3 { margin: 0 0 6px; font: 700 20px var(--mono); }
+.project + .project { margin-top: 16px; }
 .project h3 a { color: var(--mist); }
 .project h3 a:hover { color: var(--amber); text-decoration: none; }
 .project .links { margin: 14px 0 0; font: 13px var(--mono); color: var(--steel); }
