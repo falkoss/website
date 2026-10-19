@@ -139,6 +139,23 @@ def labs_lockup(light=MIST, accent=FALCON, labs=LAKE, bird=FALCON, water=LAKE):
                f'<g transform="translate({184 + width + 36} 26)">{tag}</g>')
 
 
+def labs_social():
+    """1280×640 link preview for labs.falkoss.org."""
+    body, width = wordmark_body()
+    tag, _ = wordmark_body(LAKE, LAKE, text="labs")
+    mono = 'font-family="SF Mono, Menlo, Consolas, monospace"'
+    grid = "".join(f'<line x1="{x}" y1="0" x2="{x}" y2="640" stroke="#151A20"/>' for x in range(0, 1281, 64)) + \
+           "".join(f'<line x1="0" y1="{y}" x2="1280" y2="{y}" stroke="#151A20"/>' for y in range(0, 641, 64))
+    return svg("0 0 1280 640", f'<rect width="1280" height="640" fill="{NIGHT}"/>{grid}'
+               f'<g transform="translate(96 96) scale(0.44)">{mark()}</g>'
+               f'<text x="560" y="196" {mono} font-size="26" fill="{REED}">$ ls ~/labs</text>'
+               f'<g transform="translate(560 226) scale(1.0)">{body}</g>'
+               f'<g transform="translate({560 + width + 30} 226) scale(1.0)">{tag}</g>'
+               f'<text x="562" y="400" {mono} font-size="28" fill="{MIST}">plugins · tools · forks · experiments</text>'
+               f'<text x="562" y="446" {mono} font-size="24" fill="{REED}">// small free software from Falkensee</text>'
+               f'<rect x="562" y="472" width="16" height="30" fill="{FALCON}"/>')
+
+
 def social():
     """1280×640: GitHub social preview, link previews – terminal style."""
     body, width = wordmark_body()
@@ -211,6 +228,8 @@ def main():
         "falkoss-labs-icon.svg": labs_icon(rounded=True),
         "falkoss-labs-icon-square.svg": labs_icon(),
         "falkoss-labs-lockup-on-dark.svg": labs_lockup(),
+        "falkoss-labs-social-1280x640.svg": labs_social(),
+        "falkoss-labs-mark.svg": labs_icon(bg="none").replace('viewBox="0 0 1024 1024"', 'viewBox="140 250 744 600"'),
         "falkoss-labs-lockup-on-light.svg": labs_lockup(INK, FALCON_DARK, LAKE_DARK, FALCON_DARK, LAKE_DARK),
     }
     for name, content in files.items():
@@ -232,6 +251,7 @@ def main():
     render(s("falkoss-labs-icon-square.svg"), os.path.join(PNG, "social", "github-avatar-labs-500.png"), 500)
     for size in (256, 512, 1024):
         render(s("falkoss-labs-icon.svg"), os.path.join(PNG, "labs", f"falkoss-labs-icon-{size}.png"), size)
+    render(s("falkoss-labs-social-1280x640.svg"), os.path.join(PNG, "labs", "falkoss-labs-social-1280x640.png"), 1280, 640)
     for v in ("on-dark", "on-light"):
         render(s(f"falkoss-labs-lockup-{v}.svg"), os.path.join(PNG, "labs", f"falkoss-labs-lockup-{v}-1200.png"), 1200)
 
