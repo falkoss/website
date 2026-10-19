@@ -49,6 +49,7 @@ nav { display: flex; gap: 24px; font: 14px var(--mono); }
 nav a { color: var(--reed); }
 nav a::before { content: "./"; color: var(--steel); }
 nav a:hover { color: var(--mist); text-decoration: none; }
+nav a.git { color: var(--amber); }
 
 /* hero */
 .hero { padding: 80px 0 64px; }
@@ -116,6 +117,6 @@ footer a:hover { color: var(--mist); }
   .hero { padding-top: 48px; }
   .hero .wrap { grid-template-columns: 1fr; }
   .hero .mark { max-width: 200px; order: -1; justify-self: start; }
-  nav { display: none; }
+  nav a:not(.git) { display: none; }
   .project { grid-template-columns: 1fr; }
 }
