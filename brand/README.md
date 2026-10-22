@@ -84,6 +84,6 @@ falkOSS carries projects that keep their own identity – e.g. **omaflake** with
 
 ## Licence
 
-The brand is © Falcon Lake Open Source Software gUG (haftungsbeschränkt) (in formation). The files may be used to refer
+The brand is © falkOSS – Falcon Lake Open Source Software gUG (haftungsbeschränkt) i. G. The files may be used to refer
 to falkOSS; using them for other products or in a way that suggests endorsement is not allowed. [OPEN: whether to
 publish the artwork under CC BY-ND 4.0 – trademark rights stay unaffected either way.]
