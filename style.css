@@ -82,10 +82,11 @@ section h2::before { content: "// "; color: var(--steel); }
 .cell h3::before { content: "> "; color: var(--amber); }
 .cell p { margin: 0; color: var(--reed); font-size: 15px; }
 
-.project { display: grid; grid-template-columns: 88px 1fr; gap: 22px; align-items: start; background: var(--panel); border: 1px solid var(--line); padding: 24px; }
-.project img { width: 88px; height: 88px; display: block; }
+.project { display: grid; grid-template-columns: 64px 1fr; gap: 22px; align-items: start; background: var(--panel); border: 1px solid var(--line); padding: 24px; }
+.project img { width: 64px; height: 64px; display: block; }
 .project h3 { margin: 0 0 6px; font: 700 20px var(--mono); }
-.project + .project { margin-top: 16px; }
+/* two columns from six projects on; one again on narrow screens */
+.projects { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .project h3 a { color: var(--mist); }
 .project h3 a:hover { color: var(--amber); text-decoration: none; }
 .project .links { margin: 14px 0 0; font: 13px var(--mono); color: var(--steel); }
@@ -113,6 +114,8 @@ footer a:hover { color: var(--mist); }
 .legal h2::before { content: ""; }
 .legal p, .legal li { color: var(--reed); }
 .draft { border: 1px dashed var(--amber); padding: 12px 16px; color: var(--amber); font: 14px var(--mono); }
+
+@media (max-width: 900px) { .projects { grid-template-columns: 1fr; } }
 
 @media (max-width: 760px) {
   .hero { padding-top: 48px; }
