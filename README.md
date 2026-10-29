@@ -7,9 +7,8 @@ resources (no fonts, scripts or embeds from other servers), no cookies, no track
 |---|---|
 | `index.html`, `style.css` | the one page (English) |
 | `impressum.html`, `datenschutz.html` | legal pages (German) – **drafts with placeholders**, fill in before going public |
-| `assets/` | favicon, icons, lockup, mark, social preview, web manifest – **generated** by `brand/generate.py` |
+| `assets/` | favicon, icons, lockup, mark, social preview, web manifest – **copies** of `web/` from [falkoss/brand](https://github.com/falkoss/brand) |
 | `assets/projects/` | project icons (copied from each project's brand) |
-| `brand/` | the brand kit: `generate.py` (edit this), `svg/`, `png/`, README with colours, type and usage |
 
 Preview locally:
 
@@ -17,19 +16,20 @@ Preview locally:
 python3 -m http.server 8000
 ```
 
-Regenerate the brand kit and the site's icons after a design change:
+After a design change, regenerate the brand kit in `falkoss/brand` and copy its head assets here:
 
 ```sh
-python3 brand/generate.py
+python3 ../brand/generate.py && cp -R ../brand/web/. assets/
 ```
 
-Licence: the site's code is **AGPL-3.0-or-later** (`LICENSE`); the brand (logo, name, marks) is not covered by it –
-see `brand/README.md`.
+Licence: the site's code is **AGPL-3.0-or-later** (`LICENSE`). The files in `assets/` from falkoss/brand are under
+CC BY-ND 4.0 (the project icons under their projects' brand licences); the brand itself (logo, name, marks) is not
+covered by any licence – see falkoss/brand.
 
 ## Publishing
 
 GitHub Pages, deployed by `.github/workflows/pages.yml` on every push to `main` (only the public files are
-copied into the artifact – not `brand/`, `README.md` or the workflow). Free organisations can publish Pages only from
+copied into the artifact – not `README.md` or the workflow). Free organisations can publish Pages only from
 **public** repositories, so the repo goes public together with the site.
 
 One-time setup:

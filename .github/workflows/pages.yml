@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Publish the static site to GitHub Pages on every push to main.
-# Only the public files go into the artifact (no brand sources, no workflow, no README).
+# Only the public files go into the artifact (no workflow, no README).
 name: pages
 
 on:
