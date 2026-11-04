@@ -87,6 +87,8 @@ section h2::before { content: "// "; color: var(--steel); }
 .project h3 { margin: 0 0 6px; font: 700 20px var(--mono); }
 /* two columns from six projects on; one again on narrow screens */
 .projects { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+/* falkOSS labs always comes last; with an odd number of cards it spans both columns */
+.projects > .project.labs:nth-child(odd) { grid-column: 1 / -1; }
 .project h3 a { color: var(--mist); }
 .project h3 a:hover { color: var(--amber); text-decoration: none; }
 .project .links { margin: 14px 0 0; font: 13px var(--mono); color: var(--steel); }

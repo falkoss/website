@@ -33,3 +33,10 @@ path = ["assets/projects/kernoid.png", "assets/projects/notenwart.png", "assets/
 precedence = "override"
 SPDX-FileCopyrightText = "falkOSS – Falcon Lake Open Source Software gUG (haftungsbeschränkt) i. G."
 SPDX-License-Identifier = "AGPL-3.0-or-later"
+
+# The aktujo icon, a copy from aktujo/brand.
+[[annotations]]
+path = "assets/projects/aktujo.png"
+precedence = "override"
+SPDX-FileCopyrightText = "falkOSS – Falcon Lake Open Source Software gUG (haftungsbeschränkt) i. G."
+SPDX-License-Identifier = "CC-BY-ND-4.0"
