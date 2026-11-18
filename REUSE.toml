@@ -40,3 +40,10 @@ path = "assets/projects/aktujo.png"
 precedence = "override"
 SPDX-FileCopyrightText = "falkOSS – Falcon Lake Open Source Software gUG (haftungsbeschränkt) i. G."
 SPDX-License-Identifier = "CC-BY-ND-4.0"
+
+# The verkodo icon, a copy from verkodo/brand.
+[[annotations]]
+path = "assets/projects/verkodo.png"
+precedence = "override"
+SPDX-FileCopyrightText = "falkOSS – Falcon Lake Open Source Software gUG (haftungsbeschränkt) i. G."
+SPDX-License-Identifier = "CC-BY-ND-4.0"
